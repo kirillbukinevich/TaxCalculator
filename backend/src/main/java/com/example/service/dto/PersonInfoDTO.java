@@ -1,9 +1,9 @@
 package com.example.service.dto;
 
-import com.example.domain.IncomeTax;
+import com.example.domain.PersonInfo;
 import com.example.domain.enums.Period;
 
-public class IncomeTaxDTO {
+public class PersonInfoDTO {
 
     private long id;
 
@@ -31,17 +31,19 @@ public class IncomeTaxDTO {
 
     private int housingCost;
 
-    public IncomeTaxDTO(){}
+    private int businessCost;
 
-    public IncomeTaxDTO(IncomeTax incomeTax){
-        this(incomeTax.getId(),incomeTax.getPeriod(),incomeTax.getProfitFromGoods(),
-                incomeTax.getProfitOther(),incomeTax.isWorking(),incomeTax.isBenefits(),
-                incomeTax.isFamilyBenefits(),incomeTax.getNumberOfMinors(),incomeTax.getDisabledChildren(),
-                incomeTax.getDependents(),incomeTax.getInsuranceCost(),incomeTax.getEducationalCost(),
-                incomeTax.getHousingCost());
+    public PersonInfoDTO(){}
+
+    public PersonInfoDTO(PersonInfo personInfo){
+        this(personInfo.getId(), personInfo.getPeriod(), personInfo.getProfitFromGoods(),
+                personInfo.getProfitOther(), personInfo.isWorking(), personInfo.isHasBenefits(),
+                personInfo.isHasFamilyBenefits(), personInfo.getNumberOfMinors(), personInfo.getDisabledChildren(),
+                personInfo.getDependents(), personInfo.getInsuranceCost(), personInfo.getEducationalCost(),
+                personInfo.getHousingCost(), personInfo.getBusinessCost());
     }
 
-    public IncomeTaxDTO(long id, Period period, int profitFromGoods, int profitOther, boolean working, boolean benefits, boolean familyBenefits, int numberOfMinors, int disabledChildren, int dependents, int insuranceCost, int educationalCost, int housingCost) {
+    public PersonInfoDTO(long id, Period period, int profitFromGoods, int profitOther, boolean working, boolean benefits, boolean familyBenefits, int numberOfMinors, int disabledChildren, int dependents, int insuranceCost, int educationalCost, int housingCost, int businessCost) {
         this.id = id;
         this.period = period;
         this.profitFromGoods = profitFromGoods;
@@ -55,6 +57,7 @@ public class IncomeTaxDTO {
         this.insuranceCost = insuranceCost;
         this.educationalCost = educationalCost;
         this.housingCost = housingCost;
+        this.businessCost = businessCost;
     }
 
     public long getId() {
@@ -163,7 +166,7 @@ public class IncomeTaxDTO {
 
     @Override
     public String toString() {
-        return "IncomeTaxDTO{" +
+        return "PersonInfoDTO{" +
                 "id=" + id +
                 ", period=" + period +
                 ", profitFromGoods=" + profitFromGoods +
@@ -178,6 +181,14 @@ public class IncomeTaxDTO {
                 ", educationalCost=" + educationalCost +
                 ", housingCost=" + housingCost +
                 '}';
+    }
+
+    public int getBusinessCost() {
+        return businessCost;
+    }
+
+    public void setBusinessCost(int businessCost) {
+        this.businessCost = businessCost;
     }
 }
 

@@ -7,12 +7,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "income_tax")
-public class IncomeTax {
+@Table(name = "person_info_for_income_tax")
+public class PersonInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -23,13 +23,13 @@ public class IncomeTax {
     private int profitOther;
 
     @NotNull
-    private boolean working;
+    private boolean isWorking;
 
     @NotNull
-    private boolean benefits;
+    private boolean hasBenefits;
 
     @NotNull
-    private boolean familyBenefits;
+    private boolean hasFamilyBenefits;
 
     private int numberOfMinors;
 
@@ -43,12 +43,10 @@ public class IncomeTax {
 
     private int housingCost;
 
+    private int businessCost;
+
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Period getPeriod() {
@@ -76,27 +74,27 @@ public class IncomeTax {
     }
 
     public boolean isWorking() {
-        return working;
+        return isWorking;
     }
 
     public void setWorking(boolean working) {
-        this.working = working;
+        this.isWorking = working;
     }
 
-    public boolean isBenefits() {
-        return benefits;
+    public boolean isHasBenefits() {
+        return hasBenefits;
     }
 
-    public void setBenefits(boolean benefits) {
-        this.benefits = benefits;
+    public void setHasBenefits(boolean hasBenefits) {
+        this.hasBenefits = hasBenefits;
     }
 
-    public boolean isFamilyBenefits() {
-        return familyBenefits;
+    public boolean isHasFamilyBenefits() {
+        return hasFamilyBenefits;
     }
 
-    public void setFamilyBenefits(boolean familyBenefits) {
-        this.familyBenefits = familyBenefits;
+    public void setHasFamilyBenefits(boolean hasFamilyBenefits) {
+        this.hasFamilyBenefits = hasFamilyBenefits;
     }
 
     public int getNumberOfMinors() {
@@ -145,5 +143,13 @@ public class IncomeTax {
 
     public void setHousingCost(int housingCost) {
         this.housingCost = housingCost;
+    }
+
+    public int getBusinessCost() {
+        return businessCost;
+    }
+
+    public void setBusinessCost(int businessCost) {
+        this.businessCost = businessCost;
     }
 }
