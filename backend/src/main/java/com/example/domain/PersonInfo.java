@@ -77,8 +77,8 @@ public class PersonInfo {
         return isWorking;
     }
 
-    public void setWorking(boolean working) {
-        this.isWorking = working;
+    public void setWorking(boolean isWorking) {
+        this.isWorking = isWorking;
     }
 
     public boolean isHasBenefits() {

@@ -2,7 +2,6 @@ package com.example.service;
 
 import com.example.domain.PersonInfo;
 import com.example.repository.PersonInfoRepository;
-import com.example.web.rest.PersonInfoResource;
 import com.example.web.rest.vm.ManagedPersonInfoVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.time.ZonedDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -53,9 +49,9 @@ public class PersonInfoService {
         personInfo.setDisabledChildren(managedPersonInfoVM.getDisabledChildren());
         personInfo.setNumberOfMinors(managedPersonInfoVM.getNumberOfMinors());
 
-        personInfo.setWorking(managedPersonInfoVM.isWorking());
-        personInfo.setHasBenefits(managedPersonInfoVM.isBenefits());
-        personInfo.setHasFamilyBenefits(managedPersonInfoVM.isFamilyBenefits());
+        personInfo.setWorking(managedPersonInfoVM.isHasWork());
+        personInfo.setHasBenefits(managedPersonInfoVM.isHasBenefits());
+        personInfo.setHasFamilyBenefits(managedPersonInfoVM.isHasFamilyBenefits());
 
         }
 

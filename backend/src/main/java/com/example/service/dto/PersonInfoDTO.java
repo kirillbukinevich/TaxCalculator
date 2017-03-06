@@ -5,19 +5,17 @@ import com.example.domain.enums.Period;
 
 public class PersonInfoDTO {
 
-    private long id;
-
     private Period period;
 
     private int profitFromGoods;
 
     private int profitOther;
 
-    private boolean working;
+    private boolean hasWork;
 
-    private boolean benefits;
+    private boolean hasBenefits;
 
-    private boolean familyBenefits;
+    private boolean hasFamilyBenefits;
 
     private int numberOfMinors;
 
@@ -43,14 +41,13 @@ public class PersonInfoDTO {
                 personInfo.getHousingCost(), personInfo.getBusinessCost());
     }
 
-    public PersonInfoDTO(long id, Period period, int profitFromGoods, int profitOther, boolean working, boolean benefits, boolean familyBenefits, int numberOfMinors, int disabledChildren, int dependents, int insuranceCost, int educationalCost, int housingCost, int businessCost) {
-        this.id = id;
+    public PersonInfoDTO(long id, Period period, int profitFromGoods, int profitOther, boolean hasWork, boolean hasBenefits, boolean hasFamilyBenefits, int numberOfMinors, int disabledChildren, int dependents, int insuranceCost, int educationalCost, int housingCost, int businessCost) {
         this.period = period;
         this.profitFromGoods = profitFromGoods;
         this.profitOther = profitOther;
-        this.working = working;
-        this.benefits = benefits;
-        this.familyBenefits = familyBenefits;
+        this.hasWork = hasWork;
+        this.hasBenefits = hasBenefits;
+        this.hasFamilyBenefits = hasFamilyBenefits;
         this.numberOfMinors = numberOfMinors;
         this.disabledChildren = disabledChildren;
         this.dependents = dependents;
@@ -58,14 +55,6 @@ public class PersonInfoDTO {
         this.educationalCost = educationalCost;
         this.housingCost = housingCost;
         this.businessCost = businessCost;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Period getPeriod() {
@@ -92,28 +81,28 @@ public class PersonInfoDTO {
         this.profitOther = profitOther;
     }
 
-    public boolean isWorking() {
-        return working;
+    public boolean isHasWork() {
+        return hasWork;
     }
 
-    public void setWorking(boolean working) {
-        this.working = working;
+    public void setHasWork(boolean isWorking) {
+        this.hasWork = isWorking;
     }
 
-    public boolean isBenefits() {
-        return benefits;
+    public boolean isHasBenefits() {
+        return hasBenefits;
     }
 
-    public void setBenefits(boolean benefits) {
-        this.benefits = benefits;
+    public void setHasBenefits(boolean hasBenefits) {
+        this.hasBenefits = hasBenefits;
     }
 
-    public boolean isFamilyBenefits() {
-        return familyBenefits;
+    public boolean isHasFamilyBenefits() {
+        return hasFamilyBenefits;
     }
 
-    public void setFamilyBenefits(boolean familyBenefits) {
-        this.familyBenefits = familyBenefits;
+    public void setHasFamilyBenefits(boolean hasFamilyBenefits) {
+        this.hasFamilyBenefits = hasFamilyBenefits;
     }
 
     public int getNumberOfMinors() {
@@ -167,13 +156,12 @@ public class PersonInfoDTO {
     @Override
     public String toString() {
         return "PersonInfoDTO{" +
-                "id=" + id +
                 ", period=" + period +
                 ", profitFromGoods=" + profitFromGoods +
                 ", profitOther=" + profitOther +
-                ", working=" + working +
-                ", benefits=" + benefits +
-                ", familyBenefits=" + familyBenefits +
+                ", hasWork=" + hasWork +
+                ", hasBenefits=" + hasBenefits +
+                ", hasFamilyBenefits=" + hasFamilyBenefits +
                 ", numberOfMinors=" + numberOfMinors +
                 ", disabledChildren=" + disabledChildren +
                 ", dependents=" + dependents +

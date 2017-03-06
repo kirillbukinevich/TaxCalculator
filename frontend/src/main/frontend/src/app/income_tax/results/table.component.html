@@ -1,44 +1,21 @@
 <app-multiplepopup (notify)='onNotify($event)'></app-multiplepopup>
 
-<div style="margin: auto; max-width: 1200px; margin-bottom: 50px; font-size: 12px">
-<table class="table">
-  <thead>
-  <tr>
-    <th>period</th>
-    <th>profitFromGoods</th>
-    <th>profitOther</th>
-    <th>isWorking</th>
-    <th>hasBenefits</th>
-    <th>hasFamilyBenefits</th>
-    <th>numberOfMinors</th>
-    <th>disabledChildren</th>
-    <th>dependents</th>
-    <th>insuranceCost</th>
-    <th>educationalCost</th>
-    <th>housingCost</th>
-    <th>businessCost</th>
-    <!--<th sortableHeader="maxtempF" [sort]="sort">high</th>-->
-    <!--<th sortableHeader="mintempF" [sort]="sort">low</th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <!-- no need to subscribe to observable since async does this for us -->
-  <tr *ngFor="let incomeTax of incomeTaxes">
-    <td>{{ incomeTax.period }}</td>
-    <td>{{ incomeTax.profitFromGoods }}</td>
-    <td>{{ incomeTax.profitOther }}</td>
-    <td>{{ incomeTax.isWorking }}</td>
-    <td>{{ incomeTax.hasBenefits }}</td>
-    <td>{{ incomeTax.hasFamilyBenefits }}</td>
-    <td>{{ incomeTax.numberOfMinors }}</td>
-    <td>{{ incomeTax.disabledChildren }}</td>
-    <td>{{ incomeTax.dependents }}</td>
-    <td>{{ incomeTax.insuranceCost }}</td>
-    <td>{{ incomeTax.educationalCost }}</td>
-    <td>{{ incomeTax.housingCost }}</td>
-    <td>{{ incomeTax.businessCost }}</td>
 
-  </tr>
-  </tbody>
-</table>
-</div>
+<br>
+<ng-table [config]="config"
+          (tableChanged)="onChangeTable(config)"
+          (cellClicked)="onCellClick($event)"
+          [rows]="rows" [columns]="columns" style="width: 100px">
+</ng-table>
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>

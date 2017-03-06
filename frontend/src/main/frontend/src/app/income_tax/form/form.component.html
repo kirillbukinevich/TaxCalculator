@@ -4,7 +4,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Periods</label>
       <div class="col-sm-7">
-        <select id="periods" name="periods" class="form-control" [ngModel] = "incomeTax.period">
+        <select id="periods" name="periods" class="form-control" [(ngModel)] = "incomeTax.period">
           <option *ngFor="let period of periods" [value]="period.value">{{period.display}}
           </option>
         </select>
@@ -32,7 +32,7 @@
         <div class="col-sm-3 control-label"></div>
         <div class="col-sm-7">
           <label>
-            <input type="checkbox" id="isWorking" name="isWorking" [(ngModel)]="incomeTax.isWorking">
+            <input type="checkbox" id="hasWork" name="hasWork" [(ngModel)]="incomeTax.hasWork">
             Working</label>
         </div>
       </div>
@@ -56,7 +56,7 @@
           <label>
             <input type="checkbox" id="hasFamilyBenefits" name="hasFamilyBenefits"
                    [(ngModel)]="incomeTax.hasFamilyBenefits">
-            Family benefits</label>
+            Family hasBenefits</label>
         </div>
       </div>
     </div>

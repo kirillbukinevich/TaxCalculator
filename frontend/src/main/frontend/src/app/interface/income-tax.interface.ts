@@ -1,8 +1,8 @@
 export interface IncomeTax {
   period: string;
-  profitFromGoods; number;
+  profitFromGoods: number;
   profitOther: number;
-  isWorking: boolean;
+  hasWork: boolean;
   hasBenefits: boolean;
   hasFamilyBenefits: boolean;
   numberOfMinors: number;

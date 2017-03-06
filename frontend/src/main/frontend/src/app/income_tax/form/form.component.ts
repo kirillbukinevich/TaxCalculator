@@ -26,11 +26,15 @@ export class IncomeTaxFormComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.initIncomeTax();
+  }
+
+  initIncomeTax(): void{
     this.incomeTax = <IncomeTax>{
       period: this.periods[0].display,
       profitFromGoods: 0,
       profitOther: 0,
-      isWorking: false,
+      hasWork: false,
       hasBenefits: false,
       hasFamilyBenefits: false,
       numberOfMinors: 0,
@@ -46,27 +50,6 @@ export class IncomeTaxFormComponent implements OnInit {
   initForm():void {
     this.form = document.forms["incomeTaxForm"];
   }
-
-  // initIncomeTax(inputs) {
-  //
-  //   // this.incomeTax = <IncomeTax>{
-  //   //   period: inputs.periods.selectedOptions[0].textContent,
-  //   //   periodNumber: inputs.periods.selectedOptions[0].value,
-  //   //   profitFromGoods: inputs.profitFromGoods.valueAsNumber,
-  //   //   profitOther: inputs.profitOther.valueAsNumber,
-  //   //   isWorking: inputs.isWorking.checked,
-  //   //   hasBenefits: inputs.hasBenefits.checked,
-  //   //   hasFamilyBenefits: inputs.hasFamilyBenefits.checked,
-  //   //   numberOfMinors: inputs.numberOfMinors.valueAsNumber,
-  //   //   disabledChildren: inputs.disabledChildren.valueAsNumber,
-  //   //   dependents: inputs.dependents.valueAsNumber,
-  //   //   insuranceCost: inputs.insuranceCost.valueAsNumber,
-  //   //   educationalCost: inputs.educationalCost.valueAsNumber,
-  //   //   housingCost: inputs.housingCost.valueAsNumber,
-  //   //   businessCost: inputs.businessCost.valueAsNumber
-  //   // };
-  // }
-
 
   changeFormState(target): void {
     console.log("DEFINE");
@@ -84,7 +67,7 @@ export class IncomeTaxFormComponent implements OnInit {
 
     this.defineValuePeriod();
 
-    if (this.incomeTax.isWorking) {
+    if (this.incomeTax.hasWork) {
       this.incomeTaxTotal = this.calculateWorkingPerson();
     } else {
       this.incomeTaxTotal = this.calculateUnemployedPerson();
@@ -261,7 +244,7 @@ export class IncomeTaxFormComponent implements OnInit {
     }
   }
 
-  showPopup5() {
+  showPopup5(): void {
     this.popup5.options = <Options>{
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-mbe-attack",
@@ -282,10 +265,11 @@ export class IncomeTaxFormComponent implements OnInit {
   @Output() notify: EventEmitter<IncomeTax> = new EventEmitter<IncomeTax>();
 
 
-  login() {
+  login(): void{
     let self = this;
     setTimeout(function () {
       self.notify.emit(self.incomeTax);
+      self.initIncomeTax();
     },1000);
 
     this.popup5.hide();
