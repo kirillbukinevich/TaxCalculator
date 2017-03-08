@@ -21,7 +21,6 @@ export class HttpService {
       .subscribe(
         data => {
           console.log('Saved', data.json());
-          // this.updateOrAddPostToList(data.json());
         },
         err => console.log('Something went wrong')
       );

@@ -12,4 +12,5 @@ export interface IncomeTax {
   educationalCost: number;
   housingCost: number;
   businessCost: number;
+  total: number;
 }

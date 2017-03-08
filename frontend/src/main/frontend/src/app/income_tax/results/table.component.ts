@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../http.service";
 import {IncomeTax} from "../../interface/income-tax.interface";
+import {Filter} from "../../interface/filter.interface";
 import {Response} from "@angular/http";
 
 
@@ -8,10 +9,11 @@ import {Response} from "@angular/http";
   selector: 'income-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  providers: [HttpService]
+  providers: [HttpService],
 })
 export class IncomeTaxTableComponent implements OnInit {
 
+  val1: number = 5;
 
   incomeTaxes: IncomeTax[] = [];
 
@@ -29,6 +31,7 @@ export class IncomeTaxTableComponent implements OnInit {
     {title: 'educational cost', name: 'educationalCost'},
     {title: 'housing cost', name: 'housingCost'},
     {title: 'business cost', name: 'businessCost'},
+    {title: 'total', name: 'total'},
   ];
 
 
@@ -38,16 +41,12 @@ export class IncomeTaxTableComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     this.httpService.getData().subscribe((data: Response) => {
-      console.dir(data);
-      console.log(data);
-      console.log(data.json());
       this.incomeTaxes = data.json();
-      console.log(this.incomeTaxes);
       this.onChangeTable(this.config);
       this.length = this.incomeTaxes.length;
 
-    });
 
+    });
 
 
   }
@@ -55,7 +54,7 @@ export class IncomeTaxTableComponent implements OnInit {
 
   onNotify(person_info: IncomeTax): void {
     alert(person_info.businessCost);
-    console.dir('person_info: ' + person_info.period);
+    console.dir('person_info: ' + person_info.total);
     console.log(this.httpService.saveIncomeTax(person_info));
     this.incomeTaxes.push(person_info);
     this.onChangeTable(this.config);
@@ -168,4 +167,42 @@ export class IncomeTaxTableComponent implements OnInit {
   public onCellClick(data: any): any {
     console.log(data);
   }
+
+  filter: Filter = {
+    "fromTotal": 0,
+    "toTotal": 0
+  };
+
+  filterByTotal(target): void {
+
+    console.log("form: " + this.filter.fromTotal + " to: " + this.filter.toTotal);
+    if (!this.filter.fromTotal) {
+      this.filter.fromTotal = 0;
+    }
+    if (!this.filter.toTotal) {
+      this.filter.toTotal = 0;
+    }
+    if(this.filter.fromTotal == 0 &&
+      this.filter.toTotal == 0){
+      this.onChangeTable(this.config);
+
+    }
+    if (this.filter.fromTotal > this.filter.toTotal) {
+      return;
+    }
+
+    let incomeTaxesTemp: IncomeTax[] = [];
+    incomeTaxesTemp = this.incomeTaxes;
+
+      this.incomeTaxes = this.incomeTaxes.filter(
+        incomeTax => incomeTax.total >= this.filter.fromTotal);
+
+      this.incomeTaxes = this.incomeTaxes.filter(
+        incomeTax => incomeTax.total <= this.filter.toTotal);
+
+    this.onChangeTable(this.config);
+
+    this.incomeTaxes = incomeTaxesTemp;
+  }
+
 }

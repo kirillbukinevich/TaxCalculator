@@ -5,3 +5,14 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.income-tax-table-style{
+  width: 100px;
+  color: #00a000;
+  background-color: #ccffcb;
+}
+.form-control{
+  background-color: rgba(160, 222, 79, 0.50);
+}
+
+

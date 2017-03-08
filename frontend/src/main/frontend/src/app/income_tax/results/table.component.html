@@ -1,14 +1,39 @@
-<app-multiplepopup (notify)='onNotify($event)'></app-multiplepopup>
+<calculating-form (notify)='onNotify($event)'></calculating-form>
+<br>
+<div>
+  <div (click)="isCollapsed = !isCollapsed" class="text-center ">
+    <button class="btn btn-mbe-normal sp" style="background-color: rgb(160, 222, 79);">
+      Open filter panel</button> </div>
+  <div [collapse]="isCollapsed">
+    <div class="well" style="min-height: 100px; color: #00a000;">
+      <div class="form-group">
+        <div class="" style="float: left; padding-top: 8px">
+          <h3>Total filter</h3>
+        </div>
+        <div class="col-sm-1">
+          <label for="fromTotal">from </label>
+          <input type="number" class="form-control" id="fromTotal" name="fromTotal"
+                 [(ngModel)]="filter.fromTotal" (change)="filterByTotal($event.target)">
+        </div>
+        <div class="col-sm-1">
+          <label for="untilTotal">to</label>
+          <input type="number" class="form-control" id="untilTotal" name="untilTotal"
+                 [(ngModel)]="filter.toTotal" (change)="filterByTotal($event.target)">
+        </div>
+      </div>
+    </div>
+  </div>
 
+</div>
 
 <br>
 <ng-table [config]="config"
           (tableChanged)="onChangeTable(config)"
           (cellClicked)="onCellClick($event)"
-          [rows]="rows" [columns]="columns" style="width: 100px">
+          [rows]="rows" [columns]="columns" class = "income-tax-table-style">
 </ng-table>
 <pagination *ngIf="config.paging"
-            class="pagination-sm"
+            class="income-tax-table-style pagination-sm"
             [(ngModel)]="page"
             [totalItems]="length"
             [itemsPerPage]="itemsPerPage"
@@ -18,4 +43,4 @@
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
 </pagination>
-<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+<pre *ngIf="config.paging" class="income-tax-table-style card card-block card-header">Page: {{page}} / {{numPages}}</pre>

@@ -1,0 +1,6 @@
+input:disabled {
+  background: #dddddd;
+}
+.form-control{
+  background-color: rgba(160, 222, 79, 0.50);
+}

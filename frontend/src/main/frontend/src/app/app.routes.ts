@@ -1,6 +1,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IncomeTaxTableComponent }      from './income_tax/results/table.component';
+import {HomeComponent} from "./home/home.component";
 
 
 const appRoutes: Routes = [
@@ -10,8 +11,12 @@ const appRoutes: Routes = [
       component: IncomeTaxTableComponent
      },
     {
+      path: 'home',
+      component: HomeComponent
+     },
+    {
       path: '**',
-      component: IncomeTaxTableComponent,
+      component: HomeComponent,
     }
 ];
 

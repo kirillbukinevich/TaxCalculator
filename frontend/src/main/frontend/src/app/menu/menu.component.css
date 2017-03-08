@@ -1,0 +1,10 @@
+.form-control{
+  background-color: rgba(160, 222, 79, 0.50);
+}
+
+#language{
+  border: 3px solid rgba(115, 173, 33, 0.47);
+  margin-top: 8px;
+  margin-left: 15px;
+  max-width: 130px;
+}
