@@ -2,7 +2,7 @@
 
   <form class="form-horizontal" name="incomeTaxForm" (change)="changeFormState($event.target)">
     <div class="form-group">
-      <label class="col-sm-3 control-label">Periods</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.PERIOD' | translate }}</label>
       <div class="col-sm-7">
         <select id="periods" name="periods" class="form-control" [(ngModel)] = "incomeTax.period">
           <option *ngFor="let period of periods" [value]="period.value">{{period.display}}
@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Profit From Goods</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.PROFITFROMGOODS' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="profitFromGoods" name="profitFromGoods"
                [(ngModel)]="incomeTax.profitFromGoods">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Profit Other</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.PROFITOTHER' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="profitOther" name="profitOther"
                [(ngModel)]="incomeTax.profitOther">
@@ -33,7 +33,7 @@
         <div class="col-sm-7">
           <label>
             <input type="checkbox" id="hasWork" name="hasWork" [(ngModel)]="incomeTax.hasWork">
-            Working</label>
+            {{ 'INCOME_TAX.HASWORK' | translate }}</label>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
         <div class="col-sm-7">
           <label>
             <input type="checkbox" id="hasBenefits" name="hasBenefits" [(ngModel)]="incomeTax.hasBenefits">
-            Benefits</label>
+            {{ 'INCOME_TAX.HASBENEFITS' | translate }}</label>
         </div>
       </div>
     </div>
@@ -56,13 +56,13 @@
           <label>
             <input type="checkbox" id="hasFamilyBenefits" name="hasFamilyBenefits"
                    [(ngModel)]="incomeTax.hasFamilyBenefits">
-            Family hasBenefits</label>
+            {{ 'INCOME_TAX.HASFAMILYBENEFITS' | translate }}</label>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Number Of Minors</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.NUMBEROFMINORS' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="numberOfMinors" name="numberOfMinors"
                [(ngModel)]="incomeTax.numberOfMinors">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Disabled Children</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.DISABLEDCHILDREN' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="disabledChildren" name="disabledChildren"
                [(ngModel)]="incomeTax.disabledChildren">
@@ -78,14 +78,14 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Dependents</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.DEPENDENTS' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="dependents" name="dependents" [(ngModel)]="incomeTax.dependents">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Insurance Cost</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.INSURANCECOST' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="insuranceCost" name="insuranceCost"
                [(ngModel)]="incomeTax.insuranceCost">
@@ -93,7 +93,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Educational Cost</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.EDUCATIONALCOST' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="educationalCost" name="educationalCost"
                [(ngModel)]="incomeTax.educationalCost">
@@ -101,7 +101,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Housing Cost</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.HOUSINGCOST' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="housingCost" name="housingCost"
                [(ngModel)]="incomeTax.housingCost">
@@ -109,7 +109,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Business Cost</label>
+      <label class="col-sm-3 control-label">{{ 'INCOME_TAX.BUSINESSCOST' | translate }}</label>
       <div class="col-sm-7">
         <input type="number" class="form-control" id="businessCost" name="businessCost"
                [(ngModel)]="incomeTax.businessCost">
@@ -120,7 +120,7 @@
       <div class="form-group text-right">
         <div class="col-sm-offset-3 col-sm-7">
           <label>
-             Total: {{incomeTax.total}}
+            {{ 'INCOME_TAX.TOTAL' | translate }}: {{incomeTax.total}}
           </label>
         </div>
       </div>
@@ -132,7 +132,7 @@
 <div class="text-center">
   <div class="row">
     <button class="btn btn-mbe-normal sp" (click)="showPopup5()" style="background-color: rgb(160, 222, 79);">
-      Calculate</button>
+      {{ 'INCOME_TAX.PAGE_COMPONENT.CALCULATE' | translate }}</button>
   </div>
 </div>
 

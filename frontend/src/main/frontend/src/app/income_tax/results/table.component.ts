@@ -1,8 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, EventEmitter, OnChanges, SimpleChanges, Input} from "@angular/core";
 import {HttpService} from "../http.service";
 import {IncomeTax} from "../../interface/income-tax.interface";
 import {Filter} from "../../interface/filter.interface";
 import {Response} from "@angular/http";
+import {TranslateService, LangChangeEvent} from "@ngx-translate/core";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -11,14 +13,69 @@ import {Response} from "@angular/http";
   styleUrls: ['./table.component.css'],
   providers: [HttpService],
 })
-export class IncomeTaxTableComponent implements OnInit {
+export class IncomeTaxTableComponent implements OnInit  {
 
+
+  public onLangChange: EventEmitter<LangChangeEvent> = new EventEmitter<LangChangeEvent>();
   val1: number = 5;
 
-  incomeTaxes: IncomeTax[] = [];
+  translate: TranslateService;
+  incomeTaxes: IncomeTax[] = [
+
+    {
+      "period": "QUARTER",
+      "profitFromGoods": 0,
+      "profitOther": 0,
+      "hasWork": false,
+      "hasBenefits": false,
+      "hasFamilyBenefits": false,
+      "numberOfMinors": 0,
+      "disabledChildren": 0,
+      "dependents": 0,
+      "insuranceCost": 0,
+      "educationalCost": 0,
+      "housingCost": 0,
+      "businessCost": 0,
+      "total": 0
+    },
+    {
+      "period": "QUARTER",
+      "profitFromGoods": 0,
+      "profitOther": 0,
+      "hasWork": false,
+      "hasBenefits": false,
+      "hasFamilyBenefits": false,
+      "numberOfMinors": 0,
+      "disabledChildren": 0,
+      "dependents": 0,
+      "insuranceCost": 0,
+      "educationalCost": 0,
+      "housingCost": 0,
+      "businessCost": 0,
+      "total": 0
+    },
+    {
+      "period": "QUARTER",
+      "profitFromGoods": 123423,
+      "profitOther": 0,
+      "hasWork": true,
+      "hasBenefits": false,
+      "hasFamilyBenefits": false,
+      "numberOfMinors": 0,
+      "disabledChildren": 0,
+      "dependents": 0,
+      "insuranceCost": 0,
+      "educationalCost": 0,
+      "housingCost": 0,
+      "businessCost": 0,
+      "total": 19747
+    }
+
+  ];
+  languageObject: any;
 
   public columns: Array<any> = [
-    {title: 'period', name: 'period', filtering: {filterString: '', placeholder: 'search criteria'}},
+    {title: 'period', name: 'period'},
     {title: 'goods profit', name: 'profitFromGoods'},
     {title: 'other profit', name: 'profitOther'},
     {title: 'has work', name: 'hasWork'},
@@ -35,18 +92,24 @@ export class IncomeTaxTableComponent implements OnInit {
   ];
 
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,translate: TranslateService,private activateRoute: ActivatedRoute) {
+    this.translate = translate;
+    this.onLangChange = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log("!!!!!!!!!!!!!!!!!!!");
+      this.changeLanguage();
+    });
+
   }
 
   ngOnInit() {
+    this.changeLanguage();
     console.log('ngOnInit');
-    this.httpService.getData().subscribe((data: Response) => {
-      this.incomeTaxes = data.json();
+    // this.httpService.getData().subscribe((data: Response) => {
+    //   this.incomeTaxes = data.json();
       this.onChangeTable(this.config);
       this.length = this.incomeTaxes.length;
 
-
-    });
+    // });
 
 
   }
@@ -58,7 +121,6 @@ export class IncomeTaxTableComponent implements OnInit {
     console.log(this.httpService.saveIncomeTax(person_info));
     this.incomeTaxes.push(person_info);
     this.onChangeTable(this.config);
-
   }
 
   public rows: Array<any> = [];
@@ -188,6 +250,7 @@ export class IncomeTaxTableComponent implements OnInit {
 
     }
     if (this.filter.fromTotal > this.filter.toTotal) {
+      this.filter.fromTotal = 0;
       return;
     }
 
@@ -205,4 +268,27 @@ export class IncomeTaxTableComponent implements OnInit {
     this.incomeTaxes = incomeTaxesTemp;
   }
 
+  changeLanguage(){
+    this.translate.getTranslation(this.translate.currentLang).subscribe((res: string) => {
+      console.log(res);
+      console.log(res["HOME"]["HELLO"]);
+      this.columns = [
+        {title: res["INCOME_TAX"]["PERIOD"], name: 'period'},
+        {title: res["INCOME_TAX"]["PROFITFROMGOODS"], name: 'profitFromGoods'},
+        {title: res["INCOME_TAX"]["PROFITOTHER"], name: 'profitOther'},
+        {title: res["INCOME_TAX"]["HASWORK"], name: 'hasWork'},
+        {title: res["INCOME_TAX"]["HASBENEFITS"], name: 'hasBenefits'},
+        {title: res["INCOME_TAX"]["HASFAMILYBENEFITS"], name: 'hasFamilyBenefits'},
+        {title: res["INCOME_TAX"]["NUMBEROFMINORS"], name: 'numberOfMinors'},
+        {title: res["INCOME_TAX"]["DISABLEDCHILDREN"], name: 'disabledChildren'},
+        {title: res["INCOME_TAX"]["DEPENDENTS"], name: 'dependents'},
+        {title: res["INCOME_TAX"]["INSURANCECOST"], name: 'insuranceCost'},
+        {title: res["INCOME_TAX"]["EDUCATIONALCOST"], name: 'educationalCost'},
+        {title: res["INCOME_TAX"]["HOUSINGCOST"], name: 'housingCost'},
+        {title: res["INCOME_TAX"]["BUSINESSCOST"], name: 'businessCost'},
+        {title: res["INCOME_TAX"]["TOTAL"], name: 'total'},
+      ]
+
+    });
+  }
 }

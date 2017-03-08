@@ -1,7 +1,7 @@
 <div>
   <div>
     <div>
-      <app-menu></app-menu>
+      <app-menu (notify)='onChangeLanguage($event)'></app-menu>
     </div>
     <div>
       <router-outlet></router-outlet>

@@ -1,5 +1,37 @@
 {
   "HOME": {
-    "HELLO": "Welcome!"
+    "HELLO": "Welcome!",
+    "INFO": "Internet service «tax calculator» provides an opportunity:",
+    "POSSIBILITY1": "calculation of personal income tax for 2016"
+  },
+  "MENU": {
+    "HOME": "Home",
+    "INCOME_TAX": "INCOME TAX"
+  },
+  "INCOME_TAX": {
+    "PERIOD": "period",
+    "PROFITFROMGOODS": "profit from goods",
+    "PROFITOTHER": "other profit",
+    "HASWORK": "has work",
+    "HASBENEFITS": "has benefits",
+    "HASFAMILYBENEFITS": "has family benefits",
+    "NUMBEROFMINORS": "number of minors",
+    "DISABLEDCHILDREN": "disabled сhildren",
+    "DEPENDENTS": "dependents",
+    "INSURANCECOST": "insurance сost",
+    "EDUCATIONALCOST": "educational сost",
+    "HOUSINGCOST": "housing сost",
+    "BUSINESSCOST": "business сost ",
+    "TOTAL": "total",
+    "PAGE_COMPONENT": {
+      "PAGE": "page",
+      "CALCULATE": "Calculate",
+      "FILTER_DATA": "Filter data",
+      "FILTER_TYPE": {
+        "FROM": "from",
+        "TO": "to",
+        "TOTAL": "filter by total result"
+      }
+    }
   }
 }

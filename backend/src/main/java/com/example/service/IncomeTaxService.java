@@ -53,4 +53,23 @@ public class IncomeTaxService {
 
     }
 
+    public static void main(String[] args) {
+        System.out.println(new String("export interface IncomeTax {\n" +
+                "  period: string;\n" +
+                "  profitFromGoods: number;\n" +
+                "  profitOther: number;\n" +
+                "  hasWork: boolean;\n" +
+                "  hasBenefits: boolean;\n" +
+                "  hasFamilyBenefits: boolean;\n" +
+                "  numberOfMinors: number;\n" +
+                "  disabledChildren: number;\n" +
+                "  dependents: number;\n" +
+                "  insuranceCost: number;\n" +
+                "  educationalCost: number;\n" +
+                "  housingCost: number;\n" +
+                "  businessCost: number;\n" +
+                "  total: number;\n" +
+                "}\n").toUpperCase());
+    }
+
 }

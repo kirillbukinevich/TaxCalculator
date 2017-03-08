@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
 
 
   public languages = [
-    {value: 'en', display: 'английский'},
+    {value: 'en', display: 'english'},
     {value: 'ru', display: 'русский'},
   ];
 
@@ -31,6 +31,10 @@ export class MenuComponent implements OnInit {
 
   changeLanguage(language){
     console.log(language);
+    this.translate.get('HELLO').subscribe((res: string) => {
+      console.log(res);
+      //=> 'hello world'
+    });
     this.translate.use(language);
   }
 

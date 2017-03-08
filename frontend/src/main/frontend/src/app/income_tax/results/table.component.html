@@ -3,20 +3,20 @@
 <div>
   <div (click)="isCollapsed = !isCollapsed" class="text-center ">
     <button class="btn btn-mbe-normal sp" style="background-color: rgb(160, 222, 79);">
-      Open filter panel</button> </div>
+      {{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_DATA' | translate }}</button> </div>
   <div [collapse]="isCollapsed">
     <div class="well" style="min-height: 100px; color: #00a000;">
       <div class="form-group">
         <div class="" style="float: left; padding-top: 8px">
-          <h3>Total filter</h3>
+          <p>{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.TOTAL' | translate }}</p>
         </div>
         <div class="col-sm-1">
-          <label for="fromTotal">from </label>
+          <label for="fromTotal">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.FROM' | translate }}</label>
           <input type="number" class="form-control" id="fromTotal" name="fromTotal"
                  [(ngModel)]="filter.fromTotal" (change)="filterByTotal($event.target)">
         </div>
         <div class="col-sm-1">
-          <label for="untilTotal">to</label>
+          <label for="untilTotal">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.TO' | translate }}</label>
           <input type="number" class="form-control" id="untilTotal" name="untilTotal"
                  [(ngModel)]="filter.toTotal" (change)="filterByTotal($event.target)">
         </div>
@@ -43,4 +43,5 @@
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
 </pagination>
-<pre *ngIf="config.paging" class="income-tax-table-style card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+<pre *ngIf="config.paging" style="width: 155px;" class="income-tax-table-style card card-block card-header">
+  {{ 'INCOME_TAX.PAGE_COMPONENT.PAGE' | translate }}: {{page}} / {{numPages}}</pre>

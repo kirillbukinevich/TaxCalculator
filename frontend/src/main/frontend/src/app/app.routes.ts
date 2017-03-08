@@ -11,7 +11,7 @@ const appRoutes: Routes = [
       component: IncomeTaxTableComponent
      },
     {
-      path: 'home',
+      path: 'home/:lang',
       component: HomeComponent
      },
     {
