@@ -15,4 +15,21 @@
   background-color: rgba(160, 222, 79, 0.50);
 }
 
+p{
+  color: #00a000;
+}
 
+
+@media(max-width : 768px) {
+  .collapsing{
+    height: 380px !important;
+  }
+  .well{
+    height: 380px !important;
+
+  }
+}
+.p-main-text{
+  color: white;
+  font-weight: bold;
+}

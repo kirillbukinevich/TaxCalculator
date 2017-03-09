@@ -1,7 +1,7 @@
-package com.example.service.dto;
+package com.iba.bukinevi.service.dto;
 
-import com.example.domain.IncomeTax;
-import com.example.domain.enums.Period;
+import com.iba.bukinevi.domain.IncomeTax;
+import com.iba.bukinevi.domain.enums.Period;
 
 public class IncomeTaxDTO {
 
@@ -13,21 +13,21 @@ public class IncomeTaxDTO {
 
     private boolean hasWork;
 
-    private boolean hasBenefits;
+    private Boolean hasBenefits;
 
-    private boolean hasFamilyBenefits;
+    private Boolean hasFamilyBenefits;
 
-    private int numberOfMinors;
+    private Integer numberOfMinors;
 
-    private int disabledChildren;
+    private Integer disabledChildren;
 
-    private int dependents;
+    private Integer dependents;
 
-    private int insuranceCost;
+    private Integer insuranceCost;
 
-    private int educationalCost;
+    private Integer educationalCost;
 
-    private int housingCost;
+    private Integer housingCost;
 
     private int businessCost;
 
@@ -43,7 +43,9 @@ public class IncomeTaxDTO {
                 incomeTax.getHousingCost(), incomeTax.getBusinessCost(), incomeTax.getTotal());
     }
 
-    public IncomeTaxDTO(Period period, int profitFromGoods, int profitOther, boolean hasWork, boolean hasBenefits, boolean hasFamilyBenefits, int numberOfMinors, int disabledChildren, int dependents, int insuranceCost, int educationalCost, int housingCost, int businessCost,int total) {
+    public IncomeTaxDTO(Period period, int profitFromGoods, int profitOther, boolean hasWork, Boolean hasBenefits,
+                        Boolean hasFamilyBenefits, Integer numberOfMinors, Integer disabledChildren, Integer dependents,
+                        Integer insuranceCost, Integer educationalCost, Integer housingCost, int businessCost,int total) {
         this.period = period;
         this.profitFromGoods = profitFromGoods;
         this.profitOther = profitOther;
@@ -64,97 +66,58 @@ public class IncomeTaxDTO {
         return period;
     }
 
-    public void setPeriod(Period period) {
-        this.period = period;
-    }
-
     public int getProfitFromGoods() {
         return profitFromGoods;
-    }
-
-    public void setProfitFromGoods(int profitFromGoods) {
-        this.profitFromGoods = profitFromGoods;
     }
 
     public int getProfitOther() {
         return profitOther;
     }
 
-    public void setProfitOther(int profitOther) {
-        this.profitOther = profitOther;
-    }
-
     public boolean isHasWork() {
         return hasWork;
     }
 
-    public void setHasWork(boolean isWorking) {
-        this.hasWork = isWorking;
-    }
-
-    public boolean isHasBenefits() {
+    public Boolean isHasBenefits() {
         return hasBenefits;
     }
 
-    public void setHasBenefits(boolean hasBenefits) {
-        this.hasBenefits = hasBenefits;
-    }
-
-    public boolean isHasFamilyBenefits() {
+    public Boolean isHasFamilyBenefits() {
         return hasFamilyBenefits;
     }
 
-    public void setHasFamilyBenefits(boolean hasFamilyBenefits) {
-        this.hasFamilyBenefits = hasFamilyBenefits;
-    }
-
-    public int getNumberOfMinors() {
+    public Integer getNumberOfMinors() {
         return numberOfMinors;
     }
 
-    public void setNumberOfMinors(int numberOfMinors) {
-        this.numberOfMinors = numberOfMinors;
-    }
-
-    public int getDisabledChildren() {
+    public Integer getDisabledChildren() {
         return disabledChildren;
     }
 
-    public void setDisabledChildren(int disabledChildren) {
-        this.disabledChildren = disabledChildren;
-    }
-
-    public int getDependents() {
+    public Integer getDependents() {
         return dependents;
     }
 
-    public void setDependents(int dependents) {
-        this.dependents = dependents;
-    }
-
-    public int getInsuranceCost() {
+    public Integer getInsuranceCost() {
         return insuranceCost;
     }
 
-    public void setInsuranceCost(int insuranceCost) {
-        this.insuranceCost = insuranceCost;
-    }
-
-    public int getEducationalCost() {
+    public Integer getEducationalCost() {
         return educationalCost;
     }
 
-    public void setEducationalCost(int educationalCost) {
-        this.educationalCost = educationalCost;
-    }
-
-    public int getHousingCost() {
+    public Integer getHousingCost() {
         return housingCost;
     }
 
-    public void setHousingCost(int housingCost) {
-        this.housingCost = housingCost;
+    public int getBusinessCost() {
+        return businessCost;
     }
+
+    public int getTotal() {
+        return total;
+    }
+
 
     @Override
     public String toString() {
@@ -173,22 +136,5 @@ public class IncomeTaxDTO {
                 ", housingCost=" + housingCost +
                 '}';
     }
-
-    public int getBusinessCost() {
-        return businessCost;
-    }
-
-    public void setBusinessCost(int businessCost) {
-        this.businessCost = businessCost;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
 }
 

@@ -9,7 +9,7 @@
     <description>The ng2boot backend project</description>
 
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.iba.bukinevi</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

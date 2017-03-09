@@ -4,3 +4,17 @@ input:disabled {
 .form-control{
   background-color: rgba(160, 222, 79, 0.50);
 }
+input.ng-touched.ng-invalid {border:solid red 2px;}
+input.ng-touched.ng-valid {border:solid green 2px;}
+
+label{
+  color: #00ba00;
+}
+.p-main-text{
+  color: white;
+  font-weight: bold;
+}
+#cancelBtn{
+  color: white;
+  font-weight: bold;
+}

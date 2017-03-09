@@ -24,6 +24,5 @@ export class HttpService {
         },
         err => console.log('Something went wrong')
       );
-
   }
 }

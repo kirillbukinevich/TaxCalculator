@@ -1,14 +1,13 @@
-package com.example.domain;
+package com.iba.bukinevi.domain;
 
 
-import com.example.domain.enums.Period;
-import com.example.service.builder.IncomeTaxBuilder;
+import com.iba.bukinevi.domain.enums.Period;
+import com.iba.bukinevi.service.builder.IncomeTaxBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "person_info_for_income_tax")
+@Table(name = "income_tax")
 public class IncomeTax {
 
     @Id
@@ -24,21 +23,21 @@ public class IncomeTax {
 
     private boolean hasWork;
 
-    private boolean hasBenefits;
+    private Boolean hasBenefits;
 
-    private boolean hasFamilyBenefits;
+    private Boolean hasFamilyBenefits;
 
-    private int numberOfMinors;
+    private Integer numberOfMinors;
 
-    private int disabledChildren;
+    private Integer disabledChildren;
 
-    private int dependents;
+    private Integer dependents;
 
-    private int insuranceCost;
+    private Integer insuranceCost;
 
-    private int educationalCost;
+    private Integer educationalCost;
 
-    private int housingCost;
+    private Integer housingCost;
 
     private int businessCost;
 
@@ -50,9 +49,9 @@ public class IncomeTax {
         this.period = builder.getPeriod();
         this.profitFromGoods = builder.getProfitFromGoods();
         this.profitOther = builder.getProfitOther();
-        this.hasWork = builder.isHasWork();
-        this.hasBenefits = builder.isHasBenefits();
-        this.hasFamilyBenefits = builder.isHasFamilyBenefits();
+        this.hasWork = builder.hasWork();
+        this.hasBenefits = builder.hasBenefits();
+        this.hasFamilyBenefits = builder.hasFamilyBenefits();
         this.numberOfMinors = builder.getNumberOfMinors();
         this.disabledChildren = builder.getDisabledChildren();
         this.dependents = builder.getDependents();
@@ -83,35 +82,35 @@ public class IncomeTax {
         return hasWork;
     }
 
-    public boolean isHasBenefits() {
+    public Boolean isHasBenefits() {
         return hasBenefits;
     }
 
-    public boolean isHasFamilyBenefits() {
+    public Boolean isHasFamilyBenefits() {
         return hasFamilyBenefits;
     }
 
-    public int getNumberOfMinors() {
+    public Integer getNumberOfMinors() {
         return numberOfMinors;
     }
 
-    public int getDisabledChildren() {
+    public Integer getDisabledChildren() {
         return disabledChildren;
     }
 
-    public int getDependents() {
+    public Integer getDependents() {
         return dependents;
     }
 
-    public int getInsuranceCost() {
+    public Integer getInsuranceCost() {
         return insuranceCost;
     }
 
-    public int getEducationalCost() {
+    public Integer getEducationalCost() {
         return educationalCost;
     }
 
-    public int getHousingCost() {
+    public Integer getHousingCost() {
         return housingCost;
     }
 

@@ -8,12 +8,10 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class MenuComponent implements OnInit {
 
-
   public languages = [
     {value: 'en', display: 'english'},
     {value: 'ru', display: 'русский'},
   ];
-
 
   translate: TranslateService;
 
@@ -30,7 +28,6 @@ export class MenuComponent implements OnInit {
   }
 
   changeLanguage(language){
-    console.log(language);
     this.translate.get('HELLO').subscribe((res: string) => {
       console.log(res);
       //=> 'hello world'

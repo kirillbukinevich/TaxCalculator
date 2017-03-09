@@ -1,0 +1,78 @@
+<calculating-form (notify)='onNotify($event)'></calculating-form>
+<br>
+<div>
+  <div (click)="isCollapsed = !isCollapsed" class="text-center">
+    <button class="btn btn-mbe-normal sp" style="background-color: rgb(160, 222, 79);">
+      <span class="p-main-text">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_DATA' | translate }}</span>
+    </button>
+  </div>
+  <div [collapse]="isCollapsed">
+    <div class="well" style="height: 150px; color: #00a000;">
+      <div class="form-group">
+        <div class="col-sm-1">
+          <button class="btn btn-mbe-normal sp" style="background-color: rgb(160, 222, 79);     margin-top: 29px;"
+                  (click)="resetFilter()">
+            <span class="p-main-text">{{ 'INCOME_TAX.PAGE_COMPONENT.RESET' | translate }}</span>
+          </button>
+        </div>
+        <div class="col-sm-2 text-center">
+          <p><b>{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.PERIOD' | translate }}</b></p>
+          <select id="periods" name="periods" class="form-control" [(ngModel)]="filter.period"
+                  (change)="filterByParams()">
+            <option selected></option>
+            <option value="QUARTER">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.PERIODS.QUARTER' | translate }}</option>
+            <option value="HALF_YEAR">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.PERIODS.HALF_YEAR' | translate }}
+            </option>
+            <option value="NINE_MONTH">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.PERIODS.NINE_MONTH' | translate }}
+            </option>
+            <option value="YEAR">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.PERIODS.YEAR' | translate }}</option>
+          </select>
+        </div>
+        <div class="col-sm-2 text-center">
+          <p><b>{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.HAS_WORK' | translate }}</b></p>
+          <select id="hasWork" name="hasWork" class="form-control" [(ngModel)]="filter.hasWork"
+                  (change)="filterByParams()">
+            <option selected></option>
+            <option value="true">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.TRUE' | translate }}</option>
+            <option value="false">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.FALSE' | translate }}</option>
+          </select>
+        </div>
+        <div class="col-sm-5 text-center" style="float: left; padding-top: 8px">
+          <p><b>{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.TOTAL' | translate }}</b></p>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-4">
+            <label for="fromTotal">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.FROM' | translate }}</label>
+            <input type="number" class="form-control" id="fromTotal" name="fromTotal"
+                   [(ngModel)]="filter.fromTotal" (change)="filterByParams()">
+          </div>
+          <div class="col-sm-4">
+            <label for="untilTotal">{{ 'INCOME_TAX.PAGE_COMPONENT.FILTER_TYPE.TO' | translate }}</label>
+            <input type="number" class="form-control" id="untilTotal" name="untilTotal"
+                   [(ngModel)]="filter.toTotal" (change)="filterByParams()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br>
+<ng-table [config]="config"
+          (tableChanged)="onChangeTable(config)"
+          (cellClicked)="onCellClick($event)"
+          [rows]="rows" [columns]="columns" class="income-tax-table-style">
+</ng-table>
+<pagination *ngIf="config.paging"
+            class="income-tax-table-style pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+<pre *ngIf="config.paging" style="width: 155px;" class="income-tax-table-style card card-block card-header">{{ 'INCOME_TAX.PAGE_COMPONENT.PAGE' | translate }}: {{page}} / {{numPages}}</pre>

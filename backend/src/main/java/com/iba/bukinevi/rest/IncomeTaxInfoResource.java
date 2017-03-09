@@ -1,9 +1,9 @@
-package com.example.web.rest;
+package com.iba.bukinevi.rest;
 
-import com.example.domain.IncomeTax;
-import com.example.service.IncomeTaxService;
-import com.example.web.rest.util.HeaderUtil;
-import com.example.service.dto.IncomeTaxDTO;
+import com.iba.bukinevi.domain.IncomeTax;
+import com.iba.bukinevi.service.IncomeTaxService;
+import com.iba.bukinevi.rest.util.HeaderUtil;
+import com.iba.bukinevi.service.dto.IncomeTaxDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -47,6 +47,7 @@ public class IncomeTaxInfoResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveIncomeTax(@RequestBody IncomeTaxDTO incomeTaxDTO) throws URISyntaxException {
         log.debug("REST request to save person info : {}", incomeTaxDTO);
+        System.out.println(incomeTaxDTO);
         IncomeTax incomeTax = incomeTaxService.createUser(incomeTaxDTO);
         return ResponseEntity.created(new URI("/api/incomeTax/" + incomeTax.getId()))
                 .headers(HeaderUtil.createAlert(String.valueOf(incomeTax.getId()), "personInfoManagement.created"))

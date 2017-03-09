@@ -1,6 +1,6 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IncomeTaxTableComponent }      from './income_tax/results/table.component';
+import { IncomeTaxTableComponent }      from './income_tax/main_page/table.component';
 import {HomeComponent} from "./home/home.component";
 
 

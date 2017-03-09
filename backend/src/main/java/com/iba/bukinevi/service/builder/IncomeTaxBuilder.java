@@ -1,7 +1,7 @@
-package com.example.service.builder;
+package com.iba.bukinevi.service.builder;
 
-import com.example.domain.IncomeTax;
-import com.example.domain.enums.Period;
+import com.iba.bukinevi.domain.IncomeTax;
+import com.iba.bukinevi.domain.enums.Period;
 
 public class IncomeTaxBuilder {
     private Period period;
@@ -12,21 +12,21 @@ public class IncomeTaxBuilder {
 
     private boolean hasWork;
 
-    private boolean hasBenefits;
+    private Boolean hasBenefits;
 
-    private boolean hasFamilyBenefits;
+    private Boolean hasFamilyBenefits;
 
-    private int numberOfMinors;
+    private Integer numberOfMinors;
 
-    private int disabledChildren;
+    private Integer disabledChildren;
 
-    private int dependents;
+    private Integer dependents;
 
-    private int insuranceCost;
+    private Integer insuranceCost;
 
-    private int educationalCost;
+    private Integer educationalCost;
 
-    private int housingCost;
+    private Integer housingCost;
 
     private int businessCost;
 
@@ -52,42 +52,42 @@ public class IncomeTaxBuilder {
         return this;
     }
 
-    public IncomeTaxBuilder hasBenefits(boolean hasBenefits) {
+    public IncomeTaxBuilder hasBenefits(Boolean hasBenefits) {
         this.hasBenefits = hasBenefits;
         return this;
     }
 
-    public IncomeTaxBuilder hasFamilyBenefits(boolean hasFamilyBenefits) {
+    public IncomeTaxBuilder hasFamilyBenefits(Boolean hasFamilyBenefits) {
         this.hasFamilyBenefits = hasFamilyBenefits;
         return this;
     }
 
-    public IncomeTaxBuilder numberOfMinors(int numberOfMinors) {
+    public IncomeTaxBuilder numberOfMinors(Integer numberOfMinors) {
         this.numberOfMinors = numberOfMinors;
         return this;
     }
 
-    public IncomeTaxBuilder disabledChildren(int disabledChildren) {
+    public IncomeTaxBuilder disabledChildren(Integer disabledChildren) {
         this.disabledChildren = disabledChildren;
         return this;
     }
 
-    public IncomeTaxBuilder dependents(int dependents) {
+    public IncomeTaxBuilder dependents(Integer dependents) {
         this.dependents = dependents;
         return this;
     }
 
-    public IncomeTaxBuilder insuranceCost(int insuranceCost) {
+    public IncomeTaxBuilder insuranceCost(Integer insuranceCost) {
         this.insuranceCost = insuranceCost;
         return this;
     }
 
-    public IncomeTaxBuilder educationalCost(int educationalCost) {
+    public IncomeTaxBuilder educationalCost(Integer educationalCost) {
         this.educationalCost = educationalCost;
         return this;
     }
 
-    public IncomeTaxBuilder housingCost(int housingCost) {
+    public IncomeTaxBuilder housingCost(Integer housingCost) {
         this.housingCost = housingCost;
         return this;
     }
@@ -118,39 +118,39 @@ public class IncomeTaxBuilder {
         return profitOther;
     }
 
-    public boolean isHasWork() {
+    public boolean hasWork() {
         return hasWork;
     }
 
-    public boolean isHasBenefits() {
+    public Boolean hasBenefits() {
         return hasBenefits;
     }
 
-    public boolean isHasFamilyBenefits() {
+    public Boolean hasFamilyBenefits() {
         return hasFamilyBenefits;
     }
 
-    public int getNumberOfMinors() {
+    public Integer getNumberOfMinors() {
         return numberOfMinors;
     }
 
-    public int getDisabledChildren() {
+    public Integer getDisabledChildren() {
         return disabledChildren;
     }
 
-    public int getDependents() {
+    public Integer getDependents() {
         return dependents;
     }
 
-    public int getInsuranceCost() {
+    public Integer getInsuranceCost() {
         return insuranceCost;
     }
 
-    public int getEducationalCost() {
+    public Integer getEducationalCost() {
         return educationalCost;
     }
 
-    public int getHousingCost() {
+    public Integer getHousingCost() {
         return housingCost;
     }
 

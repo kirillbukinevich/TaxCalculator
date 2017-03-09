@@ -29,14 +29,8 @@ export class Collapse {
   }
   measureHeight() {
     let elem = this.el.nativeElement;
-    //lets be sure the element has display:block style
     elem.className = elem.className.replace('collapse', '');
-    console.log("HERE");
-    console.dir(elem);
-    // console.log(elem.nodeType);
-    // console.log(elem.clientWidth);
-    // console.log(elem.scrollHeight);
-    this.h = 100;
+    this.h = 150;
 
   }
   hide(){

@@ -1,9 +1,9 @@
-package com.example.service;
+package com.iba.bukinevi.service;
 
-import com.example.domain.IncomeTax;
-import com.example.repository.IncomeTaxRepository;
-import com.example.service.builder.IncomeTaxBuilder;
-import com.example.service.dto.IncomeTaxDTO;
+import com.iba.bukinevi.domain.IncomeTax;
+import com.iba.bukinevi.repository.IncomeTaxRepository;
+import com.iba.bukinevi.service.builder.IncomeTaxBuilder;
+import com.iba.bukinevi.service.dto.IncomeTaxDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -50,26 +50,5 @@ public class IncomeTaxService {
                 hasBenefits(incomeTaxDTO.isHasBenefits()).
                 hasFamilyBenefits(incomeTaxDTO.isHasFamilyBenefits()).
                 total(incomeTaxDTO.getTotal()).build();
-
     }
-
-    public static void main(String[] args) {
-        System.out.println(new String("export interface IncomeTax {\n" +
-                "  period: string;\n" +
-                "  profitFromGoods: number;\n" +
-                "  profitOther: number;\n" +
-                "  hasWork: boolean;\n" +
-                "  hasBenefits: boolean;\n" +
-                "  hasFamilyBenefits: boolean;\n" +
-                "  numberOfMinors: number;\n" +
-                "  disabledChildren: number;\n" +
-                "  dependents: number;\n" +
-                "  insuranceCost: number;\n" +
-                "  educationalCost: number;\n" +
-                "  housingCost: number;\n" +
-                "  businessCost: number;\n" +
-                "  total: number;\n" +
-                "}\n").toUpperCase());
-    }
-
 }

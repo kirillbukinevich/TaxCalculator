@@ -6,7 +6,7 @@
   },
   "MENU": {
     "HOME": "Home",
-    "INCOME_TAX": "INCOME TAX"
+    "INCOME_TAX": "Income tax"
   },
   "INCOME_TAX": {
     "PERIOD": "period",
@@ -27,11 +27,23 @@
       "PAGE": "page",
       "CALCULATE": "Calculate",
       "FILTER_DATA": "Filter data",
+      "RESET": "Reset",
       "FILTER_TYPE": {
         "FROM": "from",
         "TO": "to",
-        "TOTAL": "filter by total result"
+        "TOTAL": "Filter by total result",
+        "PERIOD": "Filter by period",
+        "HAS_WORK": "Has work",
+        "TRUE": "yes",
+        "FALSE": "no",
+        "PERIODS": {
+          "QUARTER": "quarter",
+          "HALF_YEAR": "half year",
+          "NINE_MONTH": "nine month",
+          "YEAR": "year"
+        }
       }
     }
-  }
+  },
+  "INVALID_DATA": "Invalid data!"
 }

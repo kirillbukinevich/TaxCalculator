@@ -11,8 +11,12 @@ import {IncomeTax} from "../../interface/income-tax.interface";
 export class IncomeTaxFormComponent implements OnInit {
 
   public incomeTax: IncomeTax;
+
   form: any;
+
   currentPeriodValue;
+
+  @Output() notify: EventEmitter<IncomeTax> = new EventEmitter<IncomeTax>();
 
   @ViewChild('popup5') popup5: Popup;
 
@@ -46,6 +50,8 @@ export class IncomeTaxFormComponent implements OnInit {
     };
   }
 
+
+
   initForm(): void {
     this.form = document.forms["incomeTaxForm"];
   }
@@ -53,16 +59,15 @@ export class IncomeTaxFormComponent implements OnInit {
   changeFormState(target): void {
     this.defineValuePeriod();
     this.initForm();
+
+    if (+this.incomeTax.businessCost >
+      (+this.incomeTax.profitFromGoods + +this.incomeTax.profitOther)) {
+      this.incomeTax.businessCost = 0;
+    }
     if (target.name === "hasWork") {
       this.changeWorkingStatus();
+      this.checkNullField();
     }
-
-    if (this.incomeTax.businessCost >
-      (this.incomeTax.profitFromGoods + this.incomeTax.profitOther)) {
-      //error
-      alert("BEDA");
-    }
-
 
 
     if (this.incomeTax.hasWork) {
@@ -70,7 +75,6 @@ export class IncomeTaxFormComponent implements OnInit {
     } else {
       this.incomeTax.total = this.calculateUnemployedPerson();
     }
-
   }
 
   changeWorkingStatus(): void {
@@ -88,8 +92,9 @@ export class IncomeTaxFormComponent implements OnInit {
   }
 
   calculateWorkingPerson(): number {
-    let result: number = (this.incomeTax.profitFromGoods + this.incomeTax.profitOther -
-      this.incomeTax.businessCost) * 0.16;
+    let result: number = (+this.incomeTax.profitFromGoods + +this.incomeTax.profitOther -
+      +this.incomeTax.businessCost) * 0.16;
+
     return result;
   }
 
@@ -136,13 +141,13 @@ export class IncomeTaxFormComponent implements OnInit {
   }
 
   firstStep(): number {
-    return this.incomeTax.profitFromGoods + this.incomeTax.profitOther;
+    return +this.incomeTax.profitFromGoods + +this.incomeTax.profitOther;
   }
 
   secondStep(step1): number {
     let step2: number;
-    if (step1 - this.incomeTax.businessCost <= 15020000) {
-      step2 = step1 - (830000 * this.currentPeriodValue)
+    if (step1 - +this.incomeTax.businessCost <= 15020000) {
+      step2 = step1 - (830000 * +this.currentPeriodValue)
     } else {
       step2 = step1;
     }
@@ -163,37 +168,36 @@ export class IncomeTaxFormComponent implements OnInit {
 
   fourthStep(step3): number {
     let step4: number = step3;
-
     if (this.incomeTax.hasFamilyBenefits &&
-      this.incomeTax.numberOfMinors > 0 &&
-      this.incomeTax.dependents > 0 &&
-      this.incomeTax.disabledChildren <=
-      this.incomeTax.numberOfMinors) {
+      +this.incomeTax.numberOfMinors > 0 &&
+      +this.incomeTax.dependents > 0 &&
+      +this.incomeTax.disabledChildren <=
+      +this.incomeTax.numberOfMinors) {
       step4 = step3 - this.currentPeriodValue * 460000 *
-        (this.incomeTax.numberOfMinors + this.incomeTax.dependents);
+        (+this.incomeTax.numberOfMinors + +this.incomeTax.dependents);
 
     } else if (!this.incomeTax.hasFamilyBenefits &&
-               this.incomeTax.dependents > 0
-            ) {
-      if (this.incomeTax.numberOfMinors == 1 &&
-          this.incomeTax.disabledChildren == 0
+      +this.incomeTax.dependents > 0
+    ) {
+      if (+this.incomeTax.numberOfMinors == 1 &&
+        +this.incomeTax.disabledChildren == 0
       ) {
         step4 = step3 - this.currentPeriodValue * 240000 *
-          (this.incomeTax.numberOfMinors + this.incomeTax.dependents);
+          (+this.incomeTax.numberOfMinors + +this.incomeTax.dependents);
       } else if (
-        this.incomeTax.numberOfMinors == 1 &&
-        this.incomeTax.disabledChildren == 1
+        +this.incomeTax.numberOfMinors == 1 &&
+        +this.incomeTax.disabledChildren == 1
       ) {
         step4 = step3 - this.currentPeriodValue *
-          (this.incomeTax.numberOfMinors * 460000 +
-          this.incomeTax.dependents * 240000);
+          (+this.incomeTax.numberOfMinors * 460000 +
+          +this.incomeTax.dependents * 240000);
 
       } else if (
-        this.incomeTax.numberOfMinors > 1 &&
-        this.incomeTax.disabledChildren <= this.incomeTax.numberOfMinors
+        +this.incomeTax.numberOfMinors > 1 &&
+        +this.incomeTax.disabledChildren <= +this.incomeTax.numberOfMinors
       ) {
         step4 = step3 - this.currentPeriodValue * 460000 *
-          (this.incomeTax.numberOfMinors + this.incomeTax.dependents);
+          (+this.incomeTax.numberOfMinors + +this.incomeTax.dependents);
       }
     }
     return step4;
@@ -201,8 +205,8 @@ export class IncomeTaxFormComponent implements OnInit {
 
   fifthStep(step4): number {
     let step5: number;
-    if (this.incomeTax.insuranceCost <= 16000000) {
-      step5 = step4 - this.incomeTax.insuranceCost;
+    if (+this.incomeTax.insuranceCost <= 16000000) {
+      step5 = step4 - +this.incomeTax.insuranceCost;
     } else {
       step5 = step4 - 16000000;
     }
@@ -211,8 +215,8 @@ export class IncomeTaxFormComponent implements OnInit {
   }
 
   sixthStep(step5): number {
-    let step6: number = step5 - (this.incomeTax.insuranceCost +
-      this.incomeTax.housingCost + this.incomeTax.educationalCost);
+    let step6: number = step5 - (+this.incomeTax.insuranceCost +
+      +this.incomeTax.housingCost + +this.incomeTax.educationalCost);
 
     return step6;
   }
@@ -242,10 +246,31 @@ export class IncomeTaxFormComponent implements OnInit {
     }
   }
 
+  checkNullField(): void{
+    if(this.incomeTax.numberOfMinors == null){
+      this.incomeTax.numberOfMinors = 0;
+      this.incomeTax.disabledChildren = 0;
+      this.incomeTax.dependents = 0;
+      this.incomeTax.insuranceCost = 0;
+      this.incomeTax.educationalCost = 0;
+      this.incomeTax.housingCost = 0;
+    } else {
+      this.incomeTax.numberOfMinors = null;
+      this.incomeTax.disabledChildren = null;
+      this.incomeTax.dependents = null;
+      this.incomeTax.insuranceCost = null;
+      this.incomeTax.educationalCost = null;
+      this.incomeTax.housingCost = null;
+      this.incomeTax.hasBenefits = null;
+      this.incomeTax.hasFamilyBenefits = null;
+    }
+    }
+
+
   showPopup5(): void {
     this.popup5.options = <Options>{
       cancleBtnClass: "btn btn-default",
-      confirmBtnClass: "btn btn-mbe-attack",
+      confirmBtnClass: "btn btn-success",
       color: "#A0DE4F",
       header: "Calculator",
       widthProsentage: 60,
@@ -259,17 +284,13 @@ export class IncomeTaxFormComponent implements OnInit {
 
   }
 
-
-  @Output() notify: EventEmitter<IncomeTax> = new EventEmitter<IncomeTax>();
-
-
-  login(): void {
-    let self = this;
-    setTimeout(function () {
-      self.notify.emit(self.incomeTax);
-      self.initIncomeTax();
-    }, 1000);
-
+  login(isFormInvalid): void {
+    if(isFormInvalid || this.incomeTax.total == 0){
+      return;
+    }
+    this.changeWorkingStatus();
+    this.notify.emit(this.incomeTax);
+    this.initIncomeTax();
     this.popup5.hide();
   }
 
