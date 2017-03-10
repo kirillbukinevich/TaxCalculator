@@ -81,6 +81,7 @@ export class IncomeTaxTableComponent implements OnInit {
   public rows: Array<any> = [];
 
   public page: number = 1;
+
   public itemsPerPage: number = 10;
   public maxSize: number = 5;
   public numPages: number = 1;
@@ -89,7 +90,6 @@ export class IncomeTaxTableComponent implements OnInit {
   public config: any = {
     paging: true,
     sorting: {columns: this.columns},
-    filtering: {filterString: ''},
     className: ['table-striped', 'table-bordered']
   };
 
@@ -130,53 +130,14 @@ export class IncomeTaxTableComponent implements OnInit {
     });
   }
 
-  public changeFilter(data: any, config: any): any {
-    let filteredData: Array<any> = data;
-    this.columns.forEach((column: any) => {
-      if (column.filtering) {
-        filteredData = filteredData.filter((item: any) => {
-          return item[column.name].match(column.filtering.filterString);
-        });
-      }
-    });
-
-    if (!config.filtering) {
-      return filteredData;
-    }
-
-    if (config.filtering.columnName) {
-      return filteredData.filter((item: any) =>
-        item[config.filtering.columnName].match(this.config.filtering.filterString));
-    }
-
-    let tempArray: Array<any> = [];
-    filteredData.forEach((item: any) => {
-      let flag = false;
-      this.columns.forEach((column: any) => {
-        if (item[column.name].toString().match(this.config.filtering.filterString)) {
-          flag = true;
-        }
-      });
-      if (flag) {
-        tempArray.push(item);
-      }
-    });
-    filteredData = tempArray;
-
-    return filteredData;
-  }
 
   public onChangeTable(config: any, page: any = {page: this.page, itemsPerPage: this.itemsPerPage}): any {
-    if (config.filtering) {
-      Object.assign(this.config.filtering, config.filtering);
-    }
 
     if (config.sorting) {
       Object.assign(this.config.sorting, config.sorting);
     }
 
-    let filteredData = this.changeFilter(this.incomeTaxes, this.config);
-    let sortedData = this.changeSort(filteredData, this.config);
+    let sortedData = this.changeSort(this.incomeTaxes, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
     this.length = sortedData.length;
   }
@@ -192,56 +153,67 @@ export class IncomeTaxTableComponent implements OnInit {
   };
 
   filterByParams(): void {
-    console.log("FILTER! " + JSON.stringify(this.filter));
-    console.log(JSON.stringify(this.filter));
-    if (!this.filter.fromTotal) {
-      this.filter.fromTotal = 0;
-    }
-    if (!this.filter.toTotal) {
-      this.filter.toTotal = 0;
-    }
-    if (this.filter.fromTotal == 0 &&
-      this.filter.toTotal == 0 && this.filter.period == "" && this.filter.hasWork == "") {
-      this.onChangeTable(this.config);
-      return;
-    }
-    if (this.filter.fromTotal > this.filter.toTotal) {
-      this.filter.fromTotal = 0;
-      return;
-    }
-
-    this.incomeTaxes = this.originalIncomeTaxes;
-
-    this.incomeTaxes = this.incomeTaxes.filter(
-      incomeTax => incomeTax.total >= this.filter.fromTotal);
-
-    this.incomeTaxes = this.incomeTaxes.filter(
-      incomeTax => incomeTax.total <= this.filter.toTotal);
-
-    if (this.filter.period != "") {
-      this.incomeTaxes = this.incomeTaxes.filter(
-        incomeTax => incomeTax.period == this.filter.period);
-    }
-
-    if (this.filter.hasWork != "") {
-      this.incomeTaxes = this.incomeTaxes.filter(
-        incomeTax => incomeTax.hasWork.toString() == this.filter.hasWork);
-    }
-
+    this.page = 1;
+    var self = this;
     this.onChangeTable(this.config);
+
+
+    setTimeout(function () {
+      if (!self.filter.fromTotal) {
+        self.filter.fromTotal = 0;
+      }
+      if (!self.filter.toTotal) {
+        self.filter.toTotal = 0;
+      }
+      if (self.filter.fromTotal == 0 &&
+        self.filter.toTotal == 0 && self.filter.period == "" && self.filter.hasWork == "") {
+        self.onChangeTable(self.config);
+        return;
+      }
+      if (self.filter.fromTotal > self.filter.toTotal) {
+        self.filter.fromTotal = 0;
+        return;
+      }
+
+      self.incomeTaxes = self.originalIncomeTaxes;
+
+      self.incomeTaxes = self.incomeTaxes.filter(
+        incomeTax => incomeTax.total >= self.filter.fromTotal);
+
+      self.incomeTaxes = self.incomeTaxes.filter(
+        incomeTax => incomeTax.total <= self.filter.toTotal);
+
+      if (self.filter.period != "") {
+        self.incomeTaxes = self.incomeTaxes.filter(
+          incomeTax => incomeTax.period == self.filter.period);
+      }
+
+      if (self.filter.hasWork != "") {
+        self.incomeTaxes = self.incomeTaxes.filter(
+          incomeTax => incomeTax.hasWork.toString() == self.filter.hasWork);
+      }
+      self.onChangeTable(self.config);
+    },300);
 
   }
 
   resetFilter() {
-    this.filter = {
-      "period": "",
-      "fromTotal": 0,
-      "toTotal": 0,
-      "hasWork": ""
-    };
-    this.incomeTaxes = this.originalIncomeTaxes;
+    this.page = 1;
     this.onChangeTable(this.config);
-  }
+
+    var self = this;
+    setTimeout(function () {
+      self.filter = {
+        "period": "",
+        "fromTotal": 0,
+        "toTotal": 0,
+        "hasWork": ""
+      };
+      self.incomeTaxes = self.originalIncomeTaxes;
+      self.page = 1;
+      self.onChangeTable(self.config);
+    },300);
+    }
 
 
   changeLanguage() {

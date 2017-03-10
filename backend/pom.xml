@@ -27,7 +27,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.example</groupId>
+            <groupId>com.iba.bukinevi</groupId>
             <artifactId>frontend</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
