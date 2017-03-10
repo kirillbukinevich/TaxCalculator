@@ -12,12 +12,12 @@ export class HttpService {
   }
 
   getData(): any {
-    return this.http.get(`/personInfo`);
+    return this.http.get(`/incomeTax`);
   }
 
   saveIncomeTax(incomeTax: IncomeTax) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    this.http.post(`/personInfo`, incomeTax, headers)
+    this.http.post(`/incomeTax`, incomeTax, headers)
       .subscribe(
         data => {
           console.log('Saved', data.json());

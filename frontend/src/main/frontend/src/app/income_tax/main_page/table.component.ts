@@ -47,11 +47,19 @@ export class IncomeTaxTableComponent implements OnInit {
   }
 
   onNotify(person_info: IncomeTax): void {
-    this.httpService.saveIncomeTax(person_info);
-    this.checkIncomeTaxNullField(person_info);
-    this.originalIncomeTaxes.push(person_info);
-    this.filterByParams();
-  }
+
+    this.page = 1;
+    this.onChangeTable(this.config);
+
+    var self = this;
+
+    setTimeout(function () {
+      self.httpService.saveIncomeTax(person_info);
+      self.checkIncomeTaxNullField(person_info);
+      self.originalIncomeTaxes.push(person_info);
+      self.filterByParams();
+    },300)
+  };
 
   checkIncomeTaxNullField(incomeTax) {
     for (let i in incomeTax) {

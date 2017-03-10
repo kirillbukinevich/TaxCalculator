@@ -1,8 +1,8 @@
 package com.iba.bukinevi.rest;
 
 import com.iba.bukinevi.domain.IncomeTax;
-import com.iba.bukinevi.service.IncomeTaxService;
 import com.iba.bukinevi.rest.util.HeaderUtil;
+import com.iba.bukinevi.service.IncomeTaxService;
 import com.iba.bukinevi.service.dto.IncomeTaxDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class IncomeTaxInfoResource {
     @Inject
     private IncomeTaxService incomeTaxService;
 
-    @RequestMapping(value = "/personInfo",
+    @RequestMapping(value = "/incomeTax",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<IncomeTaxDTO>> getAllIncomeTax() {
@@ -42,7 +42,7 @@ public class IncomeTaxInfoResource {
         return new ResponseEntity<List<IncomeTaxDTO>>(taxDTOList, headers, OK);
     }
 
-    @RequestMapping(value = "/personInfo",
+    @RequestMapping(value = "/incomeTax",
             method = POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveIncomeTax(@RequestBody IncomeTaxDTO incomeTaxDTO) throws URISyntaxException {
