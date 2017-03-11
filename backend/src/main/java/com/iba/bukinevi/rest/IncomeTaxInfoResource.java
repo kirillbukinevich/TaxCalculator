@@ -30,6 +30,11 @@ public class IncomeTaxInfoResource {
     @Inject
     private IncomeTaxService incomeTaxService;
 
+    /**
+     * GET  /incomeTax : get all income taxes.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body all income taxes
+     */
     @RequestMapping(value = "/incomeTax",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,15 +44,20 @@ public class IncomeTaxInfoResource {
                 .stream().map(IncomeTaxDTO::new).collect(Collectors.toList());
 
         HttpHeaders headers = HeaderUtil.createAlert("incomeTax.getAll", null);
-        return new ResponseEntity<List<IncomeTaxDTO>>(taxDTOList, headers, OK);
+        return new ResponseEntity<>(taxDTOList, headers, OK);
     }
 
+    /**
+     * POST  /incomeTax  : Creates a new income tax.
+     * @param incomeTaxDTO the income tax to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new income tax
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
     @RequestMapping(value = "/incomeTax",
             method = POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveIncomeTax(@RequestBody IncomeTaxDTO incomeTaxDTO) throws URISyntaxException {
         log.debug("REST request to save person info : {}", incomeTaxDTO);
-        System.out.println(incomeTaxDTO);
         IncomeTax incomeTax = incomeTaxService.createUser(incomeTaxDTO);
         return ResponseEntity.created(new URI("/api/incomeTax/" + incomeTax.getId()))
                 .headers(HeaderUtil.createAlert(String.valueOf(incomeTax.getId()), "personInfoManagement.created"))
