@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <preConditions>
+        <runningAs username="kirillbukinevich"/>
+    </preConditions>
+
+    <changeSet id="1" author="nvoxland">
+        <createTable tableName="income_tax">
+            <column name="id" type="int unsigned" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profit_from_goods" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profit_other" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+            <column name="period" type="enum('QUARTER','HALF_YEAR','NINE_MONTH','YEAR')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="has_work" type="boolean" valueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="has_benefits" type="boolean" valueBoolean="false">
+                <constraints nullable="true"/>
+            </column>
+            <column name="has_family_benefits" type="boolean" valueBoolean="false">
+                <constraints nullable="true"/>
+            </column>
+            <column name="number_of_minors" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="disabled_children" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="dependents" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="insurance_cost" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="educational_cost" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="housing_cost" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="business_cost" type="int unsigned">
+                <constraints nullable="true"/>
+            </column>
+            <column name="total" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/income_tax.csv"
+                  separator=";"
+                  tableName="income_tax">
+            <column name="has_benefits" type="boolean"/>
+            <column name="has_family_benefits" type="boolean"/>
+            <column name="has_work" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+
+</databaseChangeLog>

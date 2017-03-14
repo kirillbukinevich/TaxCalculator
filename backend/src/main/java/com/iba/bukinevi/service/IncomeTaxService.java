@@ -21,7 +21,6 @@ public class IncomeTaxService {
     @Inject
     IncomeTaxRepository incomeTaxRepository;
 
-    @Transactional(readOnly = true)
     public List<IncomeTax> getAllIncomeTax() {
         return incomeTaxRepository.findAll();
     }
